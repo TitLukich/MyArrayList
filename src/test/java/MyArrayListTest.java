@@ -30,8 +30,22 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void testRemoveElements() {
+    public void testAddAtIndexElements() {
 
+        for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+            list.add(0, i);
+        }
+
+        assertEquals(NUMBER_OF_ELEMENTS, list.size());
+        int index = NUMBER_OF_ELEMENTS - 1;
+        for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
+            assertEquals(index, list.get(i));
+            index--;
+        }
+    }
+
+    @Test
+    public void testRemoveElements() {
         // Сначала добавляем элементы
         for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
             list.add(i);
@@ -74,18 +88,6 @@ public class MyArrayListTest {
         for (int i = 0; i < NUMBER_OF_ELEMENTS; i++) {
             assertEquals(i * 10, list.get(i));
         }
-    }
-
-    @Test
-    public void testAddAtIndex() {
-        list.add(1);
-        list.add(2);
-        list.add(1, 3);
-
-        assertEquals(3, list.size());
-        assertEquals(1, list.get(0));
-        assertEquals(3, list.get(1));
-        assertEquals(2, list.get(2));
     }
 
     @Test
