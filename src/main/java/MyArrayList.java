@@ -48,7 +48,10 @@ public class MyArrayList<T> {
      */
 
     public void add(int index, T element) {
-        checkIndex(index);
+        if (element == null) {
+            throw new NullPointerException("Element cannot be null");
+        }
+        checkIndexForAdd(index);
         ensureCapacity();
         System.arraycopy(elements, index, elements, index + 1, size - index);
         elements[index] = element;
@@ -104,6 +107,9 @@ public class MyArrayList<T> {
      * @throws NullPointerException      if the specified element is null
      */
     public void set(int index, T element) {
+        if (element == null) {
+            throw new NullPointerException("Element cannot be null");
+        }
         checkIndex(index);
         elements[index] = element;
     }
@@ -178,6 +184,12 @@ public class MyArrayList<T> {
 
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+    }
+    // Метод для проверки индекса при добавлении элемента (index может быть равен size)
+    private void checkIndexForAdd(int index) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
     }
